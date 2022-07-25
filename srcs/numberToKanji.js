@@ -1,19 +1,21 @@
 
-export default function numberToKanji(num){
-
-	console.log(`length ${num.length}`);
+export default function numberToKanji(num)
+{
 	if ( num.length > 16)
 	{
+		return (-1)
 		throw new TypeError('範囲を超えました',204);
 	}
 	if (num == undefined || num === null || num == ' '){
 		return '';
 	}
 	if (!(/^-?[0-9]+$/g).test(num)){
+		return (-1)
 		throw new TypeError('半角数字以外の文字が含まれています。漢数字に変換できませんでした。-> '+ num);
 	}
 	num = Number(num);
 	if (!Number.isSafeInteger(num) || num < 0){
+		return (-1)
 		throw new RangeError('数値が '+ '0' +' ～ '+ Number.MAX_SAFE_INTEGER +' の範囲外です。漢数字に変換できませんでした。-> '+ num);
 	}
 	if (num == 0){

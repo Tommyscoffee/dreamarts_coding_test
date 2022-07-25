@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="main.css" />
-    <title>TODOリスト</title>
+    <title>dreamArts coding test</title>
     <style>
         html {
             background-color: rgb(240, 240, 240);
@@ -12,25 +12,6 @@
 </head>
 <body>
     <h1>kanjinumbers.com</h1>
-	
-	<table>
-		<tr>
-			<th>入力</th>
-			<th>出力</th>
-		  </tr>
-		  <tr>
-			<td>田中</td>
-			<td>27</td>
-		  </tr>
-		  <tr>
-			<td>佐藤</td>
-			<td>42</td>
-		  </tr>
-	</table>
-    <!-- <div>
-        <ul id="todo-container"></ul>
-        <input id="new-todo-item-title"><button id="new-todo-item-add-button">Add</button>
-    </div> -->
 
     <script>
         // TODOリストを描画する関数
@@ -65,7 +46,7 @@
         // APIからTODOリストを取得して描画する関数
         async function fetchTodoList() {
             // APIからJSONを取得する
-            return fetch('./api/v1/list')
+            return fetch('./api/v1/number2kanji/:num')
                 .then((response) => response.json())
                 .then((todoList) => {
                     renderTodoList(todoList);
