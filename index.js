@@ -7,7 +7,6 @@ app.use(multer().none()); // multerでブラウザから送信されたデータ
 app.use(express.static('web')); // webフォルダの中身を公開する
 
 app.get('/api/v1/number2kanji/:num', (req, res) => {
-    // クライアントからの送信データを取得する
 	const number = req.params.num;
 	const ans = numberToKanji(number);
 	if (ans < 0)
@@ -28,8 +27,7 @@ app.get('/api/v1/kanji2number/:kanji', (req, res) => {
 	} else{
 		res.json(ans);
 	}
-	// res.sendStatus(200);
 });
 
-// ポート3000でサーバを立てる
+// ポート3330でサーバを立てる
 app.listen(3330, () => console.log('Listening on port 3330'));
