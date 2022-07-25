@@ -57,7 +57,7 @@ app.get('/api/v1/number2kanji/:num', (req, res) => {
     // const todoTitle = todoData.title;
 	// const query = location.search
 	// console.log(`query ${query}`)
-	console.log(`res.status ${res.status}`)
+	// console.log(`res.status ${res.status}`)
 	// console.log(`query ${Object.keys(req)}`)
 	// console.log(`query ${req.params.num}`)//これで、値を取得
 	const number = req.params.num;

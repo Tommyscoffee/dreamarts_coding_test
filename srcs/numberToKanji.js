@@ -25,7 +25,7 @@ export default function numberToKanji(num){
 		num += -1;
 	}
 	const numStr = num + '';
-	const kanjiNums = ['零','壱','弐','参','四','五','六','七','八','九'];
+	const kanjiNums = ['','壱','弐','参','四','五','六','七','八','九'];
 	const kanjiNames = ['拾','百','千','万','億','兆'];
 	const exponents = [1,2,3,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68];
 	const exponentsLen = exponents.length;
@@ -36,9 +36,10 @@ export default function numberToKanji(num){
 			if (top >= 10){
 				ret += numberToKanji(top);
 			} else {
-				// if (top == 1 && exponents[i] <= 3){
-//先頭の数字が、１かつ、指数が３（線のくらい）以下の場合のみ「ー」を付けない
-				// }
+				// if (top == 1 || kanjiNums[] != 0){
+				if (top == 1 && exponents[i] <= 3){
+// 先頭の数字が、１かつ、指数が３（線のくらい）以下の場合のみ「ー」を付けない
+				}
 				ret += kanjiNums[top];
 			}
 			ret += kanjiNames[i];
