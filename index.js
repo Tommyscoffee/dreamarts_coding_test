@@ -88,6 +88,7 @@ app.get('/api/v1/number2kanji/:num', (req, res) => {
 	// } catch (e) {
 	// 	console.log(e.toString());  // -> TypeError: 半角数字以外の文字が含まれています。漢数字に変換できませんでした。-> 1a
 	// }
+	res.sendStatus(200);
 });
 
 app.get('/api/v1/kanji2number/:kanji', (req, res) => {
@@ -130,6 +131,7 @@ app.get('/api/v1/kanji2number/:kanji', (req, res) => {
 	// } catch (e) {
 	// 	console.log(e.toString());  // -> TypeError: 半角数字以外の文字が含まれています。漢数字に変換できませんでした。-> 1a
 	// }
+	res.sendStatus(200);
 });
 
 // ポート3000でサーバを立てる

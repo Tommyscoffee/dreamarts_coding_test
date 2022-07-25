@@ -31,6 +31,7 @@ export default function kanjiToNumber(kanji)
 	let ans = 0;
 	beforeChangedKanji = findExponents(kanji, exponents);
 	beforeChangedKanji.forEach(Kanji =>{
+		console.log(`+=+=+ kanji ${Kanji}`);
 		ans += change2number(Kanji);
 	})
 	console.log(`\n ans ${ans}`);
@@ -46,7 +47,7 @@ export default function kanjiToNumber(kanji)
 	// })
 
 
-	return ret;
+	return ans;
 }
 function change2number(kanji)
 {
@@ -60,6 +61,7 @@ function change2number(kanji)
 	let i = 0;
 	let j = 0;
 	let sectionTotal = 0;
+	console.log('\n\n\n');
 	console.log(`kanji ${kanji}`);
 	console.log(`kanji.slice(-1) ${kanji.slice(-1)}`);
 	basePower = powerRef.indexOf(kanji.slice(-1)) > 0 ? (3 - powerRef.indexOf(kanji.slice(-1)) ) * 4 : 0;
@@ -73,42 +75,17 @@ function change2number(kanji)
 			console.log(`exponents.indexOf(kanji[j * 2]) ${exponents_min.indexOf(kanji[j + 1])}`);
 			console.log(`sectionPower ${sectionPower}`);
 			console.log(`-=-=-=- ${ten_kanjis.indexOf(kanji[j])}`);
+			console.log(`kanji[${j}] ${kanji[j]}`);
 			sectionTotal += Number(ten_kanjis.indexOf(kanji[j])) * Number(sectionPower);
-		// } else if (powerRef.indexOf(kanji[j + 1]) >= 0 && kanji.length <= 2) {
-		// 	console.log(`ten_kanjis.indexOf(kanji[${j}]) ${ten_kanjis.indexOf(kanji[j])}`);
-		// 	sectionTotal += Number(ten_kanjis.indexOf(kanji[j]));
-		// }
 		j+= 2;
 	}
 	sectionTotal *= (10 ** basePower) ;
-	console.log(`sectionTotal ${sectionTotal}\n`);
 	i++;
-	// kanji.forEach(section =>{
-	// 	console.log(`section ${section}`);
-	// 	console.log(`section.slice(-1) ${section.slice(-1)}`);
-	// 	basePower = powerRef.indexOf(section.slice(-1)) > 0 ? (3 - powerRef.indexOf(section.slice(-1)) ) * 4 : 1;
-	// 	console.log(`basepower ${basePower}`);
-	// 	j = 0
-	// 	while (j < section.length) {
-	// 		if (exponents_min.indexOf(section[j + 1]) >= 0){
-	// 			sectionPower = 10 ** exponents_min.indexOf(section[j + 1]);
-	// 			console.log(`exponents.indexOf(section[j * 2]) ${exponents_min.indexOf(section[j + 1])}`);
-	// 			console.log(`sectionPower ${sectionPower}`);
-	// 			console.log(`-=-=-=- ${ten_kanjis.indexOf(section[j])}`);
-	// 			sectionTotal += Number(ten_kanjis.indexOf(section[j])) * Number(sectionPower);
-	// 		}
-	// 		j++;
-	// 	}
-	// 	sectionTotal *= basePower;
-	// 	console.log(`sectionTotal ${sectionTotal}\n`);
-	// 	i++;
-	// })
 	return sectionTotal;
 }
 
 function findExponents(kanji_array, exponents)
 {
-	// const exponents= ['兆','億', '万','千','百','拾'];
 	const ten_kanjis=['零','壱','弐','参','四','五','六','七','八','九'];
 	let i = 0;
 	let ans =[];
@@ -117,20 +94,12 @@ function findExponents(kanji_array, exponents)
 	let offset = 0;
 	while (j < 6)
 	{
-		console.log(`kanji[${i}] == digits = ${kanji_array[i]}`);
-		console.log(`exponents[j] ${exponents[j]}`);
 		i = offset;
-		console.log(`offset ${offset}`)
 		while (kanji_array[i] && !flag)
 		{
-			console.log(`kanji_array[${i}] ${kanji_array[i]}`);
 			if(kanji_array[i] === exponents[j]){//ここで上の桁からのひとまとまりがかかる。
-				console.log(`${kanji_array[i]} === ${exponents[j]}`)
-				// kanji
-				console.log(`offset ${offset}`);
+				// console.log(`kanji_array[${i}] ${kanji_array[i]}`);
 				ans[j] = kanji_array.slice(offset, i + 1);
-				console.log(`ans[${j}] ${ans[j]}`);
-				console.log(`i = ${i}`);
 				offset = i + 1;
 				// array
 				flag = 1;
@@ -140,7 +109,11 @@ function findExponents(kanji_array, exponents)
 		j++;
 		flag = 0;
 	}
-	if (ten_kanjis.indexOf(kanji_array[i]))
-		ans[j] = kanji_array[i];
+	console.log(`i = ${i}`);
+	console.log(`j = ${j}`);
+	console.log(`kanji_array[${i}] ${kanji_array[i - 1]}`);
+	console.log(`ten_kanjis.indexOf(kanji_array[i]) ${ten_kanjis.indexOf(kanji_array[i])}`);
+	if (ten_kanjis.indexOf(kanji_array[i - 1]) !== -1)
+		ans[j] = kanji_array[i - 1];
 	return ans;
 }
