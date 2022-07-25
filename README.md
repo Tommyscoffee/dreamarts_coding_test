@@ -4,6 +4,7 @@
 "node index.js"
 
 ・そして、ブラウザに以下のurlでアクセスしてwebAPIを利用してください。
+
 "http://localhost:3330/api/v1/number2kanji/{数値}"
 	これは、数字を漢数字に変換して返します。
 
